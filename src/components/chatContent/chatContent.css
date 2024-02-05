@@ -63,8 +63,16 @@
   background: #fff;
   padding: 1px;
 }
-.chat__item__content {
+.chat__item__contentme {
   background-color: #4462ff;
+  color: #fff;
+  padding: 15px;
+  border-radius: 10px 10px 0 10px;
+  max-width: 50%;
+  min-width: 215px;
+}
+.chat__item__content {
+  background-color: #3f2c5f;
   color: #fff;
   padding: 15px;
   border-radius: 10px 10px 0 10px;

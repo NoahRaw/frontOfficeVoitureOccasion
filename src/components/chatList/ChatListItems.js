@@ -3,6 +3,7 @@ import Avatar from "./Avatar";
 
 const ChatListItems = (props) => {
   const selectChat = (e) => {
+    props.setOtherId(props.item)
     for (let index = 0; index < e.currentTarget.parentNode.children.length; index++) {
       e.currentTarget.parentNode.children[index].classList.remove("active");
     }
@@ -22,7 +23,6 @@ const ChatListItems = (props) => {
 
       <div className="userMeta">
         <p>{props.name}</p>
-        <span className="activeTime">32 mins ago</span>
       </div>
     </div>
   );
