@@ -3,19 +3,36 @@ import "./chatContent.css";
 import Avatar from "../chatList/Avatar";
 import ChatItem from "./ChatItem";
 
-const ChatContent = () => {
+const ChatContent = ({ otherId }) => {
   const messagesEndRef = useRef(null);
-  const [chat, setChat] = useState([
-    {
-      key: 1,
-      image:
-        "logo192.png",
-      type: "",
-      msg: "Hi Tim, How are you?",
-    },
-    // ... autres éléments du chat
-  ]);
+  const [chat, setChat] = useState([]);
   const [msg, setMsg] = useState("");
+
+  const authToken = localStorage.getItem('authToken');
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await fetch(`http://localhost:8080/api/chat/ListMessage?otherUserId=${otherId.userId}`, {
+          method: "GET",
+          headers: {
+            Authorization: `Bearer ${authToken}`,
+          },
+        });
+
+        if (response.ok) {
+          const data = await response.json();
+          setChat(data);
+        } else {
+          console.error("Erreur lors de la requête HTTP:", response.statusText);
+        }
+      } catch (error) {
+        console.error("Erreur lors de la requête HTTP:", error);
+      }
+    };
+
+    fetchData();
+  }, [otherId]);
 
   const scrollToBottom = () => {
     messagesEndRef.current.scrollIntoView({ behavior: "smooth" });
@@ -24,22 +41,7 @@ const ChatContent = () => {
   useEffect(() => {
     const handleKeyDown = (e) => {
       if (e.keyCode === 13) {
-        if (msg !== "") {
-          const newChatItem = {
-            key: chat.length + 1,
-            type: "",
-            msg: msg,
-            image:
-              "logo192.png",
-          };
-
-          // Envoi de la nouvelle message au serveur ici si nécessaire
-
-          const updatedChat = [...chat, newChatItem];
-          setChat(updatedChat);
-          scrollToBottom();
-          setMsg("");
-        }
+        createNewMessage();
       }
     };
 
@@ -49,10 +51,55 @@ const ChatContent = () => {
     return () => {
       window.removeEventListener("keydown", handleKeyDown);
     };
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [chat, msg]);
 
   const onStateChange = (e) => {
     setMsg(e.target.value);
+  };
+
+  const webService = async (message) => 
+  {
+      // Appel du service web pour enregistrer le message
+      try {
+        const response = await fetch(`http://localhost:8080/api/chat?userToSend=${otherId.userId}`, {
+          method: "POST",
+          headers: {
+            Authorization: "Bearer 2124bcd076df517cbc71a5574b275f5acbbd3a46c71e38e37743cee7cfcd6fdd",
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ content: message }),
+        });
+
+        if (!response.ok) {
+          console.error("Erreur lors de la requête HTTP:", response.statusText);
+        }
+      } catch (error) {
+        console.error("Erreur lors de la requête HTTP:", error);
+      }
+  }
+
+  const createNewMessage = () => {
+    if (msg !== "") {
+      const newChatItem = {
+        key: chat.length + 1,
+        type: "",
+        msg: msg,
+        image: otherId.image,
+      };
+
+      // Envoyer le nouveau message au serveur ici si nécessaire
+
+      const updatedChat = [...chat, newChatItem];
+      setChat(updatedChat);
+      scrollToBottom();
+      webService(msg);
+      setMsg("");
+    }
+  };
+
+  const handleSendButtonClick = () => {
+    createNewMessage();
   };
 
   return (
@@ -60,11 +107,8 @@ const ChatContent = () => {
       <div className="content__header">
         <div className="blocks">
           <div className="current-chatting-user">
-            <Avatar
-              isOnline="active"
-              image="logo192.pngU"
-            />
-            <p>Tim Hover</p>
+            <Avatar isOnline="active" image={otherId.image} />
+            <p>{otherId.name}</p>
           </div>
         </div>
 
@@ -76,18 +120,19 @@ const ChatContent = () => {
           </div>
         </div>
       </div>
+      <div ref={messagesEndRef} />
       <div className="content__body">
         <div className="chat__items">
           {chat.map((itm, index) => (
             <ChatItem
               animationDelay={index + 2}
               key={itm.key}
-              user={itm.type ? itm.type : "me"}
+              user={itm.type}
               msg={itm.msg}
               image={itm.image}
+              timestamp={itm.timestamp}
             />
           ))}
-          <div ref={messagesEndRef} />
         </div>
       </div>
       <div className="content__footer">
@@ -101,7 +146,7 @@ const ChatContent = () => {
             onChange={onStateChange}
             value={msg}
           />
-          <button className="btnSendMsg" id="sendMsgBtn">
+          <button className="btnSendMsg" id="sendMsgBtn" onClick={handleSendButtonClick}>
             <i className="fa fa-paper-plane"></i>
           </button>
         </div>

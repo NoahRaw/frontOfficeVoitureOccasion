@@ -8,6 +8,7 @@
 @import url('assets/css/nice-select.css');
 @import url('assets/css/style.css');
 
+<<<<<<< HEAD
 * {
     box-sizing: border-box;
   }
@@ -80,3 +81,15 @@
     background: #3b5bfe;
   }
   
+=======
+
+@import url('css/assets/css/normalize.min.css');
+@import url('css/assets/css/bootstrap.min.css');
+@import url('css/assets/fonts/font-awesome-4.7.0/css/font-awesome.min.css');
+@import url('css/assets/css/style.css');
+@import url('css/assets/css/chartist.min.css');
+@import url('css/assets/css/jqvmap.min.css');
+@import url('css/assets/css/fullcalendar.min.css');
+@import url('css/assets/css/fullcalendar.min.css');
+/*pour les tables*/
+>>>>>>> bd30ecb (ok)
