@@ -75,20 +75,20 @@ export default function DetailHistoriqueAnnonce({ nomutilisateur,idvoitureutilis
                             </div>
                             <div className="place-cap">
                                 <div className="place-cap-top">
-                                    <span><i className="fas fa-star"></i><span>{nomutilisateur}</span> </span>
+                                    <span><i className="fas fa-user"></i><span>{nomutilisateur}</span> </span>
                                     <h3><a href="#">{nomtypedevehicule} {nommodele}</a></h3>
-                                    <p className="dolor">{prix} <span>/ {kilometrage}</span></p>
+                                    <p className="dolor">{prix} Ar<span>/ {kilometrage} km</span></p>
                                 </div>
                                 <div className="place-cap-bottom">
                                     <ul>
-                                        <li><i className="far fa-clock"></i>{dateventedebut}</li>
-                                        <li><i className="fas fa-map-marker-alt"></i>{matricule}</li>
+                                        <li><i className="fas fa-calendar-alt"></i>{dateventedebut}</li>
+                                        <li><i className="fas fa-car"></i>{matricule}</li>
                                     </ul>
                                 </div>
                                 {estVisible && 
                                     <div className="place-cap-top">
                                         <p className="dolor">Carburant : <span> {nomcarburant}</span></p>
-                                        <p className="dolor">Puissance en chevaux : <span> {kw} / {cv}</span></p>
+                                        <p className="dolor">Puissance en chevaux : <span> {kw} kw / {cv} cv</span></p>
                                         <p className="dolor">Puissance : <span> {puissance}</span></p>
                                         <p className="dolor">Marque : <span> {nommarque}</span></p>
                                         <p className="dolor">Type de boite de vitesse : <span> {nomboitedevitesse}</span></p>
@@ -97,6 +97,7 @@ export default function DetailHistoriqueAnnonce({ nomutilisateur,idvoitureutilis
                                 }
                                 <div class="button-group-area mt-40">
                                     <button onClick={handleClick} class="genric-btn success circle">Detail</button>
+                                    <button class="genric-btn danger circle">Contacter</button>
                                 </div>
                             </div>
 
