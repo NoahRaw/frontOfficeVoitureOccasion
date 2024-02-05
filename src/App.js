@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
 
 import Header from './composant/template/Header.js';
-import Annonce from './composant/Annonce.js';
+import AllAnnonce from './composant/AllAnnonce.js';
 import Footer from './composant/template/Footer.js';
+import Recherche from './composant/Recherche.js';
+
 
 import './App.css';
 
@@ -11,7 +13,7 @@ const App = () => {
   return (
     <div>
       <Header />
-      <Annonce />
+      <Recherche />
       <Footer />
     </div>
   );
