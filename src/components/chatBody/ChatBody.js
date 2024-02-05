@@ -7,8 +7,6 @@ import UserProfile from "../userProfile/UserProfile";
 const ChatBody = () => {
   const[otherId,setOtherId]=useState({});
 
-  localStorage.setItem("authToken",'99367c602e83dc17c370c051edcbdc21c9614de415901b87dbc48dd7949d7341')
-
     return (
       <div className="main__chatbody">
         <ChatList setOtherId={setOtherId}/>
