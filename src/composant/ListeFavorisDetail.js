@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 
-export default function ListeFavorisDetail({ nomutilisateur,idvoitureutilisateur, dateventedebut, matricule, kilometrage, prix, nommarque, nommodele, nomcarburant, kw, cv, nomboitedevitesse, nomtypedevehicule, nbrporte, puissance, setAnnonces }) {
+export default function ListeFavorisDetail({ idannoncefavoris,idutilisateur,idvoitureutilisateur, dateventedebut, matricule, kilometrage, prix, nommarque, nommodele, nomcarburant, kw, cv, nomboitedevitesse, nomtypedevehicule, nbrporte, puissance, setAnnonces }) {
 
     const [voiturePhoto, setVoiturePhoto] = useState([]);
   
@@ -73,9 +73,8 @@ export default function ListeFavorisDetail({ nomutilisateur,idvoitureutilisateur
 
                                 ))}
                             </div>
-                            <div className="place-cap">
+                            <div className="place-cap" key={idannoncefavoris}>
                                 <div className="place-cap-top">
-                                    <span><i className="fas fa-star"></i><span>{nomutilisateur}</span> </span>
                                     <h3><a href="#">{nomtypedevehicule} {nommodele}</a></h3>
                                     <p className="dolor">{prix} <span>/ {kilometrage}</span></p>
                                 </div>

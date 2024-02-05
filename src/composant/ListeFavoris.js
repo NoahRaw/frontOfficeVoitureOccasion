@@ -28,8 +28,8 @@ const HistoriqueAnnonce = () => {
     <main>
         {userData.map((user) => (
             <ListeFavorisDetail
-            key={user.idvoitureutilisateur}
-            nomutilisateur={user.nomutilisateur}
+            key={user.idannoncefavoris}
+            idutilisateur = {user.idutilisateur}
             idvoitureutilisateur={user.idvoitureutilisateur}
             dateventedebut={user.dateventedebut}
             matricule={user.matricule}
