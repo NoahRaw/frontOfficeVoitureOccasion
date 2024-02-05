@@ -52,60 +52,46 @@ export default function DetailHistoriqueAnnonce({ nomutilisateur,idvoitureutilis
     };
 
     return(
-        <div className="favourite-place place-padding">
-            <div className="container">
-                <div className="row">
-                    <div className="col-lg-12">
-                        <div className="section-tittle text-center">
-                            <span>ANNONCE</span>
-                            <h2>Historique de vos annonces</h2>
+        
+        <div className="col-xl-4 col-lg-4 col-md-6">
+            <div className="single-place mb-30">
+                <div className="place-img">
+                    {/* {voiturePhoto.map((photo) => ( */}
+                    {/* // <img src={`${photo.nomPhoto}`} alt="Description de l'image" ></img> */}
+                        <img src="https://images.bfmtv.com/UsUszd-6qH5LSvmGP4LK5ZkJgwE=/4x3:1252x705/800x0/images/-180591.jpg" alt="Description de l'image" ></img>
+
+                    {/* ))} */}
+                </div>
+                <div className="place-cap">
+                    <div className="place-cap-top">
+                        <span><i className="fas fa-user"></i><span>{nomutilisateur}</span> </span>
+                        <h3><a href="#">{nomtypedevehicule} {nommodele}</a></h3>
+                        <p className="dolor">{prix} Ar<span>/ {kilometrage} km</span></p>
+                    </div>
+                    <div className="place-cap-bottom">
+                        <ul>
+                            <li><i className="fas fa-calendar-alt"></i>{dateventedebut}</li>
+                            <li><i className="fas fa-car"></i>{matricule}</li>
+                        </ul>
+                    </div>
+                    {estVisible && 
+                        <div className="place-cap-top">
+                            <p className="dolor">Carburant : <span> {nomcarburant}</span></p>
+                            <p className="dolor">Puissance en chevaux : <span> {kw} kw / {cv} cv</span></p>
+                            <p className="dolor">Puissance : <span> {puissance}</span></p>
+                            <p className="dolor">Marque : <span> {nommarque}</span></p>
+                            <p className="dolor">Type de boite de vitesse : <span> {nomboitedevitesse}</span></p>
+                            <p className="dolor">Nombre de porte : <span> {nbrporte}</span></p>
                         </div>
+                    }
+                    <div class="button-group-area mt-40">
+                        <button onClick={handleClick} class="genric-btn success circle">Detail</button>
+                        <button class="genric-btn danger circle">Contacter</button>
                     </div>
                 </div>
-                <div className="row">
-                    
-                    <div className="col-xl-4 col-lg-4 col-md-6">
-                        <div className="single-place mb-30">
-                            <div className="place-img">
-                                {voiturePhoto.map((photo) => (
-                                // <img src={`${photo.nomPhoto}`} alt="Description de l'image" ></img>
-                                    <img src="https://images.bfmtv.com/UsUszd-6qH5LSvmGP4LK5ZkJgwE=/4x3:1252x705/800x0/images/-180591.jpg" alt="Description de l'image" ></img>
 
-                                ))}
-                            </div>
-                            <div className="place-cap">
-                                <div className="place-cap-top">
-                                    <span><i className="fas fa-user"></i><span>{nomutilisateur}</span> </span>
-                                    <h3><a href="#">{nomtypedevehicule} {nommodele}</a></h3>
-                                    <p className="dolor">{prix} Ar<span>/ {kilometrage} km</span></p>
-                                </div>
-                                <div className="place-cap-bottom">
-                                    <ul>
-                                        <li><i className="fas fa-calendar-alt"></i>{dateventedebut}</li>
-                                        <li><i className="fas fa-car"></i>{matricule}</li>
-                                    </ul>
-                                </div>
-                                {estVisible && 
-                                    <div className="place-cap-top">
-                                        <p className="dolor">Carburant : <span> {nomcarburant}</span></p>
-                                        <p className="dolor">Puissance en chevaux : <span> {kw} kw / {cv} cv</span></p>
-                                        <p className="dolor">Puissance : <span> {puissance}</span></p>
-                                        <p className="dolor">Marque : <span> {nommarque}</span></p>
-                                        <p className="dolor">Type de boite de vitesse : <span> {nomboitedevitesse}</span></p>
-                                        <p className="dolor">Nombre de porte : <span> {nbrporte}</span></p>
-                                    </div>
-                                }
-                                <div class="button-group-area mt-40">
-                                    <button onClick={handleClick} class="genric-btn success circle">Detail</button>
-                                    <button class="genric-btn danger circle">Contacter</button>
-                                </div>
-                            </div>
-
-                        </div>
-                    </div>
-                
-                </div>
             </div>
         </div>
+                
     );
 };
