@@ -1,5 +1,4 @@
-// import React, { useState } from 'react';
-import React from 'react';
+import React, { useState } from 'react';
 
 import Header from './composant/template/Header.js';
 // import Annonce from './composant/Annonce.js';
@@ -8,18 +7,89 @@ import ChatBody from "./components/chatBody/ChatBody";
 
 import './App.css';
 
-const App = () => {
- 
+const chatBody = () => <div className="__main"><ChatBody /></div>;
+const login = () => <div></div>;
+
+export default function App(params) {
+  // eslint-disable-next-line react-hooks/rules-of-hooks
+  const [currentComponent, setCurrentComponent] = useState('login');
+
+  // eslint-disable-next-line react-hooks/rules-of-hooks
+  const [isConnected, setIsConnected] = useState(false);
+
+  localStorage.setItem("authToken",'6e355c4d9162f7ecb883f83218eb1b0bc01862340e2f1157c8fb15b40a933f50')
+
+  const authToken = localStorage.getItem('authToken');
+
+    if(authToken==null){
+      setIsConnected(false)
+    }
+    else{
+      const checkToken = async () => {
+        try {
+          const response = await fetch(`http://localhost:52195/Utilisateurs/isTokenValide`, {
+            method: 'GET',
+            headers: {
+              'Content-Type': 'application/json',
+              'Authorization': `Bearer ${authToken}`,
+            },
+          });
+
+          if (response.ok) {
+            const data = await response.json();
+            const boolean = data; // Assurez-vous d'adapter cela à la structure de la réponse du service webi
+            console.log('componentKey: ',boolean);
+
+            if(boolean===true){
+                setIsConnected(true);
+            }
+
+          } else {
+            console.error('Erreur lors de l\'authentification');
+          }
+        } catch (error) {
+          console.error('Erreur lors de la requête HTTP:', error);
+        }
+      }
+      checkToken();
+    };
+
+  const components = {
+    chatBody: chatBody,
+    login: login,
+  };
+
+  const renderComponent = () => {
+      const ComponentToRender = components[currentComponent];
+      switch (currentComponent) {
+        case 'chatBody':
+          return <ComponentToRender/>;
+        default:
+          return <ComponentToRender/>;
+      }
+  };
+
   return (
     <div>
-      <Header />
-      {/* <Annonce /> */}
-      <div className="__main">
-        <ChatBody />
-      </div>
-      <Footer />
+      { 
+        isConnected &&
+        (
+          <div>
+            <Header setCurrentComponent={setCurrentComponent}/>
+          </div>
+        )
+      }
+
+      {renderComponent()}
+
+      { 
+        isConnected &&
+        (
+          <div>
+            <Footer />
+          </div>
+        )
+      }
     </div>
   );
-};
-
-export default App;
+}

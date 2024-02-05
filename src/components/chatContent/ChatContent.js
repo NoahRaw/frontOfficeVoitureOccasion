@@ -65,7 +65,7 @@ const ChatContent = ({ otherId }) => {
         const response = await fetch(`http://localhost:8080/api/chat?userToSend=${otherId.userId}`, {
           method: "POST",
           headers: {
-            Authorization: "Bearer 2124bcd076df517cbc71a5574b275f5acbbd3a46c71e38e37743cee7cfcd6fdd",
+            Authorization: `Bearer ${authToken}`,
             "Content-Type": "application/json",
           },
           body: JSON.stringify({ content: message }),

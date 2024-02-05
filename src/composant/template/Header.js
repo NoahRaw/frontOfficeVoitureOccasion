@@ -2,7 +2,12 @@
 // RightPanel.js
 import React from 'react';
 
-const Header = () => (
+const Header = ({setCurrentComponent}) => {
+    const handleClick = async (componentKey) => {
+        setCurrentComponent(componentKey);
+    }
+
+    return(
     <header>
        <div class="header-area">
             <div class="main-header ">
@@ -44,7 +49,7 @@ const Header = () => (
                                     <nav>               
                                         <ul id="navigation">                                                                                                                                     
                                             <li><a href="index.html">Home</a></li>
-                                            <li><a href="about.html">About US</a></li>
+                                            <li><a href="#" onClick={() => handleClick('chatBody')}>Message</a></li>
                                             <li><a href="packages.html">Package</a></li>
                                             <li><a href="blog.html">Blog</a>
                                                 <ul class="submenu">
@@ -72,6 +77,6 @@ const Header = () => (
        </div>
     </header>
 
-);
+)};
 
 export default Header;
