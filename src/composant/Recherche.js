@@ -173,23 +173,7 @@ const Recherche = () => {
 
           const handleSubmit = async (event) => {
             event.preventDefault();
-            console.log("prixMin:", prixMin);
-console.log("prixMax:", prixMax);
-console.log("idmarque:", idmarque);
 
-                    console.log("idmarque : ",idmarque);
-                    console.log("idmodele :",idmodele);
-                    console.log("idcarburant :" ,idcarburant);
-                      console.log("idpuissance :" ,idpuissance);
-                        console.log( "idpuissance :" +idpuissance);
-                          console.log("idboitedevitesse :" ,idboitedevitesse);
-                            console.log("idtypedevehicule :",idtypedevehicule);
-                              console.log("nbrporte :" ,nbrPorte);
-                                console.log("puissance :", puissanceVal);
-                                  console.log("dateventedebut :", date);
-                                  console.log("dakilometrage :", kilometrage);
-
-                     
             // Vous pouvez maintenant effectuer votre appel à votre service Spring Boot ici
             try {
 
