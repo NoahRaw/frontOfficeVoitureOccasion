@@ -4,6 +4,8 @@ import Header from './composant/template/Header.js';
 // import Annonce from './composant/Annonce.js';
 import Footer from './composant/template/Footer.js';
 import ChatBody from "./components/chatBody/ChatBody";
+import recherche from "./composant/Recherche";
+import allAnnonce from "./composant/AllAnnonce";
 
 import './App.css';
 
@@ -17,7 +19,7 @@ export default function App(params) {
   // eslint-disable-next-line react-hooks/rules-of-hooks
   const [isConnected, setIsConnected] = useState(false);
 
-  localStorage.setItem("authToken",'6e355c4d9162f7ecb883f83218eb1b0bc01862340e2f1157c8fb15b40a933f50')
+  localStorage.setItem("authToken",'de95ef026b26feb89d7f7049570de2b6b42b61004ac46f7ad489970b4b244efa')
 
   const authToken = localStorage.getItem('authToken');
 
@@ -57,12 +59,18 @@ export default function App(params) {
   const components = {
     chatBody: chatBody,
     login: login,
+    recherche: recherche,
+    allAnnonce: allAnnonce,
   };
 
   const renderComponent = () => {
       const ComponentToRender = components[currentComponent];
       switch (currentComponent) {
         case 'chatBody':
+          return <ComponentToRender/>;
+        case 'recherche':
+          return <ComponentToRender/>;
+        case 'allAnnonce':
           return <ComponentToRender/>;
         default:
           return <ComponentToRender/>;

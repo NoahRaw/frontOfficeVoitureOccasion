@@ -62,6 +62,8 @@ const Header = ({setCurrentComponent}) => {
                                                     <li><a href="#" onClick={() => handleClick('historiqueAnnonce')}>Historique</a></li>
                                                 </ul>
                                             </li>
+                                            <li><a href="#" onClick={() => handleClick('allAnnonce')}>Liste annonce</a></li>
+                                            <li><a href="#" onClick={() => handleClick('recherche')}>Recherche avancé</a></li>
                                             <li><a href="contact.html">Contact Us</a></li>
                                         </ul>
                                     </nav>
