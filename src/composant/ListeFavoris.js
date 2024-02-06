@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import ListeFavorisDetail from './ListeFavorisDetail';
 
-const HistoriqueAnnonce = () => {
+const ListeFavoris = () => {
     const [userData, setUserData] = useState([]);
 
     useEffect(() => {
@@ -26,29 +26,43 @@ const HistoriqueAnnonce = () => {
 
   return (
     <main>
-        {userData.map((user) => (
-            <ListeFavorisDetail
-            key={user.idannoncefavoris}
-            idutilisateur = {user.idutilisateur}
-            idvoitureutilisateur={user.idvoitureutilisateur}
-            dateventedebut={user.dateventedebut}
-            matricule={user.matricule}
-            kilometrage={user.kilometrage}
-            prix={user.prix}
-            nommarque={user.nommarque}
-            nommodele={user.nommodele}
-            nomcarburant={user.nomcarburant}
-            kw={user.kw}
-            cv={user.cv}
-            nomboitedevitesse={user.nomboitedevitesse}
-            nomtypedevehicule={user.nomtypedevehicule}
-            nbrporte={user.nbrporte}
-            puissance={user.puissance}
-            setAnnonces={setUserData}
-            />
-        ))}
+        <div className="favourite-place place-padding">
+            <div className="container">
+                <div className="row">
+                    <div className="col-lg-12">
+                        <div className="section-tittle text-center">
+                            <span>ANNONCE</span>
+                            <h2>Listes des favoris</h2>
+                        </div>
+                    </div>
+                </div>
+                <div className="row">
+                    {userData.map((user) => (
+                        <ListeFavorisDetail
+                        key={user.idannoncefavoris}
+                        idutilisateur = {user.idutilisateur}
+                        idvoitureutilisateur={user.idvoitureutilisateur}
+                        dateventedebut={user.dateventedebut}
+                        matricule={user.matricule}
+                        kilometrage={user.kilometrage}
+                        prix={user.prix}
+                        nommarque={user.nommarque}
+                        nommodele={user.nommodele}
+                        nomcarburant={user.nomcarburant}
+                        kw={user.kw}
+                        cv={user.cv}
+                        nomboitedevitesse={user.nomboitedevitesse}
+                        nomtypedevehicule={user.nomtypedevehicule}
+                        nbrporte={user.nbrporte}
+                        puissance={user.puissance}
+                        setAnnonces={setUserData}
+                        />
+                    ))}
+                </div>
+            </div>
+        </div>
     </main>
   );
 };
 
-export default HistoriqueAnnonce;
+export default ListeFavoris;

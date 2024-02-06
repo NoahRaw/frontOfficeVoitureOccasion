@@ -57,9 +57,9 @@ const Header = ({setCurrentComponent}) => {
                                                     <li><a href="single-blog.html">Blog Details</a></li>
                                                 </ul>
                                             </li>
-                                            <li><a href="#">Pages</a>
+                                            <li><a href="#">Historique</a>
                                                 <ul class="submenu">
-                                                    <li><a href="elements.html">Element</a></li>
+                                                    <li><a href="#" onClick={() => handleClick('historiqueAnnonce')}>Historique</a></li>
                                                 </ul>
                                             </li>
                                             <li><a href="contact.html">Contact Us</a></li>
