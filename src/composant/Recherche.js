@@ -3,18 +3,18 @@ import ConstructAnnonce from './ConstructAnnonce';
 
 const Recherche = () => {
 
-  const [idmarque, setSelectIdMarque] = useState('');
-  const [idmodele, setSelectIdModele] = useState('');
-  const [idcarburant, setSelectIdCarburant] = useState('');
-  const [idpuissance, setSelectIdPuissance] = useState('');
-  const [idboitedevitesse, setSelectIdBoiteDeVitesse] = useState('');
-  const [prixMin, setPrixMin] = useState('');
-  const [prixMax, setPrixMax] = useState('');
-  const [nbrPorte, setNbrPorte] = useState('');
-  const [puissanceVal, setPuissanceVal] = useState('');
-  const [date, setDate] = useState('');
-  const [kilometrage, setKilometrage] = useState('');
-  const [idtypedevehicule, setIdTypeDeVehicule] = useState('');
+  const [idmarque, setSelectIdMarque] = useState(0);
+  const [idmodele, setSelectIdModele] = useState(0);
+  const [idcarburant, setSelectIdCarburant] = useState(0);
+  const [idpuissance, setSelectIdPuissance] = useState(0);
+  const [idboitedevitesse, setSelectIdBoiteDeVitesse] = useState(0);
+  const [prixMin, setPrixMin] = useState(0);
+  const [prixMax, setPrixMax] = useState(1000000000);
+  const [nbrPorte, setNbrPorte] = useState(0);
+  const [puissanceVal, setPuissanceVal] = useState('0');
+  const [date, setDate] = useState('2024-02-06');
+  const [kilometrage, setKilometrage] = useState('1000000000');
+  const [idtypedevehicule, setIdTypeDeVehicule] = useState('1');
 
   const [formSubmitted, setFormSubmitted] = useState(false);
   const [userData, setUserData] = useState([]);
