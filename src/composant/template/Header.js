@@ -2,10 +2,33 @@
 // RightPanel.js
 import React from 'react';
 
-const Header = ({setCurrentComponent}) => {
+const Header = ({setCurrentComponent,setIsConnected}) => {
     const handleClick = async (componentKey) => {
         setCurrentComponent(componentKey);
     }
+
+    const deconnection = async (componentKey) => {
+        const authToken = localStorage.getItem('authToken');
+    
+        try {
+          const response = await fetch(`http://localhost:52195/Utilisateurs/deconnection`, {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+              'Authorization': `Bearer ${authToken}`,
+            }
+          });
+    
+          if (response.ok) {
+            localStorage.removeItem('authToken');
+            setCurrentComponent(componentKey);
+            setIsConnected(false);
+          }
+    
+        } catch (error) {
+          console.error('Erreur lors de la requête HTTP:', error);
+        }
+      };
 
     return(
     <header>
@@ -48,23 +71,13 @@ const Header = ({setCurrentComponent}) => {
                                 <div class="main-menu f-right d-none d-lg-block">
                                     <nav>               
                                         <ul id="navigation">                                                                                                                                     
-                                            <li><a href="index.html">Home</a></li>
+                                            <li><a href="#" onClick={() => handleClick('allAnnonce')}>Home</a></li>
                                             <li><a href="#" onClick={() => handleClick('chatBody')}>Message</a></li>
-                                            <li><a href="packages.html">Package</a></li>
-                                            <li><a href="blog.html">Blog</a>
-                                                <ul class="submenu">
-                                                    <li><a href="blog.html">Blog</a></li>
-                                                    <li><a href="single-blog.html">Blog Details</a></li>
-                                                </ul>
-                                            </li>
-                                            <li><a href="#">Historique</a>
-                                                <ul class="submenu">
-                                                    <li><a href="#" onClick={() => handleClick('historiqueAnnonce')}>Historique</a></li>
-                                                </ul>
-                                            </li>
+                                            <li><a href="#" onClick={() => handleClick('historiqueAnnonce')}>Historique</a></li>
                                             <li><a href="#" onClick={() => handleClick('allAnnonce')}>Liste annonce</a></li>
+                                            <li><a href="#" onClick={() => handleClick('ListeFavoris')}>Liste annonce favoris</a></li>
                                             <li><a href="#" onClick={() => handleClick('recherche')}>Recherche avancé</a></li>
-                                            <li><a href="contact.html">Contact Us</a></li>
+                                            <li><a href="#" onClick={() => deconnection('login')}>Deconnexion</a></li>
                                         </ul>
                                     </nav>
                                 </div>

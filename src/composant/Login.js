@@ -1,10 +1,16 @@
+/* eslint-disable react/style-prop-object */
+/* eslint-disable jsx-a11y/anchor-is-valid */
 import React, { useState } from 'react';
-import '../css/login.css';
+import '../css/Login.css';
 
-const Login = ({setIsConnected}) => {
-  const [token, setToken] = useState('');
-  const [login, setLogin] = useState('antra@gmail.com');
-  const [pwd, setPwd] = useState('3333');
+const Login = ({setIsConnected,setCurrentComponent}) => {
+  const [login, setLogin] = useState('noah@gmail.com');
+  const [pwd, setPwd] = useState('0000');
+
+  const voir = () => 
+  {
+	setCurrentComponent('allAnnonce')
+  }
 
   const handleLogin = async (e) => {
     e.preventDefault();
@@ -18,9 +24,9 @@ const Login = ({setIsConnected}) => {
         const data = await response.text();
         const authToken = data; // Assurez-vous d'adapter cela à la structure de la réponse du service webi
         if(authToken){
-            setToken(authToken);
             localStorage.setItem('authToken', authToken);
             setIsConnected(true);
+			setCurrentComponent('allAnnonce');
         }
 
         // Stockage dans le localStorage
@@ -61,6 +67,12 @@ const Login = ({setIsConnected}) => {
 							Login
 						</button>
 					</div>
+
+					<div class="container-login100-form-btn" style={{"margin-top": "50px"}}>
+						<button class="login100-form-btn" onClick={voir} style={{"background": "black"}}>
+							voir la liste des annonce
+						</button>
+					</div>
 					
 					<div class="text-center p-t-46 p-b-20">
 						<span class="txt2">
@@ -69,16 +81,15 @@ const Login = ({setIsConnected}) => {
 					</div>
 
 					<div class="login100-form-social flex-c-m">
-						<a href="facebook.com" class="login100-form-social-item flex-c-m bg1 m-r-5">
+						<a href="#" class="login100-form-social-item flex-c-m bg1 m-r-5">
 							<i class="fa fa-facebook-f" aria-hidden="true"></i>
 						</a>
 
-						<a href="twitter.com" class="login100-form-social-item flex-c-m bg2 m-r-5">
+						<a href="#" class="login100-form-social-item flex-c-m bg2 m-r-5">
 							<i class="fa fa-twitter" aria-hidden="true"></i>
 						</a>
 					</div>
 				</form>
-				{token && console.log(token)}
 				<div class="login100-more" style={{backgroundImage: `url('https://images.bfmtv.com/UsUszd-6qH5LSvmGP4LK5ZkJgwE=/4x3:1252x705/800x0/images/-180591.jpg')`}}>
 				</div>
 			</div>

@@ -253,8 +253,8 @@ const Recherche = () => {
                                                                 <label for="cc-payment" className="control-label mb-1"><b>Marque</b></label>
                                                                 <div className="col-10 col-md-15">
                                                                       <select value={idmarque} onChange={handleTextMarque} name="" id="select" className="form-control">
-                                                                                          <option value={0} disabled selected>
-                                                                                                choose your marque
+                                                                                          <option value={0} selected>
+                                                                                                choisissez votre marque
                                                                                           </option>
                                                                                           {dropdownMarque.map((option) => (
                                                                                                           <option value={option.id_marque}>
@@ -270,7 +270,7 @@ const Recherche = () => {
                                                             <div className="col-10 col-md-15">
                                                                   <select value={idmodele} onChange={handleTextModele} name="" id="select" className="form-control">
                                                                                       <option value={0}>
-                                                                                          choose your modele
+                                                                                          choisissez votre modele
                                                                                     </option>
                                                                                       {dropdownModele.map((option) => (
                                                                                                       <option value={option.idmodele}>
@@ -286,7 +286,7 @@ const Recherche = () => {
                                                             <div className="col-10 col-md-15">
                                                                   <select value={idcarburant} onChange={handleTextCarburant} name="" id="select" className="form-control">
                                                                                       <option value={0}>
-                                                                                            choose your carburant
+                                                                                            choisissez votre carburant
                                                                                       </option>
                                                                                       {dropdownCarburant.map((option) => (
                                                                                                       <option value={option.id_carburant}>
@@ -303,7 +303,7 @@ const Recherche = () => {
                                                               <div className="col-10 col-md-15">
                                                                     <select value={idpuissance} onChange={handleTextPuissance} name="" id="select" className="form-control">
                                                                                       <option value={0}>
-                                                                                            puissance
+                                                                                      choisissez votre puissance
                                                                                       </option>
                                                                                         {dropdownPuissance.map((option) => (
                                                                                                         <option value={option.idpuissance}>
@@ -320,7 +320,7 @@ const Recherche = () => {
                                                               <div className="col-10 col-md-15">
                                                                     <p>Boite de vitesse : <select name="" id="select" className="form-control" value={idboitedevitesse} onChange={handleTextBoiteDeVitesse}>
                                                                                         <option value={0}>
-                                                                                          boite de vitesse
+                                                                                        choisissez votre boite de vitesse
                                                                                     </option>
                                                                                 {dropdownBoiteDeVitesse.map((option) => (
                                                                                                 <option value={option.idboitedevitesse}>
@@ -336,7 +336,7 @@ const Recherche = () => {
                                                               <div className="col-10 col-md-15">
                                                                 <select name="" id="select" className="form-control" value={idtypedevehicule} onChange={handleTextTypeDeVehicule}>
                                                                                     <option value={0}>
-                                                                                                            type de vehicule
+                                                                                    choisissez votre type de vehicule
                                                                                                       </option>
                                                                             {dropdownTypeDeVehicule.map((option) => (
                                                                                             <option value={option.idTypeDeVehicule}>
@@ -390,8 +390,8 @@ const Recherche = () => {
                                                             </div>
                                                         </div>
 
-                                                        <div>
-                                                        <button id="payment-button" type="submit" className="btn btn-lg btn-info btn-block">
+                                                        <div className="col-10">
+                                                        <button id="payment-button" type="submit" className="mt-3 login100-form-btn">
                                                             <span id="payment-button-amount">Rechercher</span>
                                                         </button>
                                                         </div>

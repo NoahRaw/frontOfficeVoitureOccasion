@@ -4,10 +4,17 @@ import DetailHistoriqueAnnonce from './DetailHistoriqueAnnonce';
 const HistoriqueAnnonce = () => {
     const [userData, setUserData] = useState([]);
 
+    const authToken = localStorage.getItem('authToken');
+
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await fetch(`http://localhost:52195/Voitureutilisateur_view/getHistoriqueAnnonce`);
+                const response = await fetch(`http://localhost:52195/Voitureutilisateur_view/getHistoriqueAnnonce`, {
+                    method: "GET",
+                    headers: {
+                        Authorization: `Bearer ${authToken}`,
+                    },
+                    });
 
                 if (response.ok) {
                 const data = await response.json();

@@ -50,7 +50,7 @@ const ChatList = ({ setOtherId }) => {
 
     // Appel de la fonction fetchData
     fetchData();
-  }, []); // Le tableau vide signifie que cela ne dépend d'aucune autre dépendance
+  }, [authToken]); // Le tableau vide signifie que cela ne dépend d'aucune autre dépendance
 
   return (
     <div className="main__chatlist">

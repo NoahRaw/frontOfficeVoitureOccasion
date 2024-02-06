@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import DetailAnnonce from './DetailAnnonce';
 
 
-const AllAnnonce = () => {
+const AllAnnonce = ({setOtherId,setCurrentComponent}) => {
   const [userData, setUserData] = useState([]);
 
   useEffect(() => {
@@ -38,7 +38,7 @@ const AllAnnonce = () => {
                 </div>
                 <div className="row">
                     {userData.map((user) => (
-                        <DetailAnnonce user={user} />
+                        <DetailAnnonce user={user} setOtherId={setOtherId} setCurrentComponent={setCurrentComponent}/>
                     ))}
                 </div>
             </div>

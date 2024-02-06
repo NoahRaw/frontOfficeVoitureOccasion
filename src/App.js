@@ -1,32 +1,27 @@
 import React, { useState } from 'react';
 
 import Header from './composant/template/Header.js';
-// import Annonce from './composant/Annonce.js';
 import Footer from './composant/template/Footer.js';
 import ChatBody from "./components/chatBody/ChatBody";
 import recherche from "./composant/Recherche";
-import allAnnonce from "./composant/AllAnnonce";
+import AllAnnonce from "./composant/AllAnnonce";
+import HistoriqueAnnonce from "./composant/HistoriqueAnnonce";
+import ListeFavoris from "./composant/ListeFavoris";
+import Login from "./composant/Login";
 
 import './App.css';
 
-const chatBody = () => <div className="__main"><ChatBody /></div>;
-const login = () => <div></div>;
-
 export default function App(params) {
-  // eslint-disable-next-line react-hooks/rules-of-hooks
   const [currentComponent, setCurrentComponent] = useState('login');
 
-  // eslint-disable-next-line react-hooks/rules-of-hooks
   const [isConnected, setIsConnected] = useState(false);
 
-  localStorage.setItem("authToken",'de95ef026b26feb89d7f7049570de2b6b42b61004ac46f7ad489970b4b244efa')
+  const[otherId,setOtherId]=useState({});
+
+  // localStorage.setItem("authToken",'de95ef026b26feb89d7f7049570de2b6b42b61004ac46f7ad489970b4b244efa')
 
   const authToken = localStorage.getItem('authToken');
 
-    if(authToken==null){
-      setIsConnected(false)
-    }
-    else{
       const checkToken = async () => {
         try {
           const response = await fetch(`http://localhost:52195/Utilisateurs/isTokenValide`, {
@@ -44,6 +39,7 @@ export default function App(params) {
 
             if(boolean===true){
                 setIsConnected(true);
+                setCurrentComponent('allAnnonce')
             }
 
           } else {
@@ -52,28 +48,29 @@ export default function App(params) {
         } catch (error) {
           console.error('Erreur lors de la requête HTTP:', error);
         }
-      }
-      checkToken();
     };
+    if(isConnected===false)
+      checkToken();
 
   const components = {
-    chatBody: chatBody,
-    login: login,
     recherche: recherche,
-    allAnnonce: allAnnonce,
   };
 
   const renderComponent = () => {
       const ComponentToRender = components[currentComponent];
       switch (currentComponent) {
         case 'chatBody':
-          return <ComponentToRender/>;
+          return <div className="__main"><ChatBody setOtherId={setOtherId} otherId={otherId} isConnected={isConnected} setCurrentComponent={setCurrentComponent}/></div>;
         case 'recherche':
           return <ComponentToRender/>;
         case 'allAnnonce':
-          return <ComponentToRender/>;
+          return <AllAnnonce setOtherId={setOtherId} setCurrentComponent={setCurrentComponent}/>;
+        case 'historiqueAnnonce':
+            return <HistoriqueAnnonce />;
+        case 'ListeFavoris':
+          return <ListeFavoris />;
         default:
-          return <ComponentToRender/>;
+          return <Login setIsConnected={setIsConnected} setCurrentComponent={setCurrentComponent}/>;
       }
   };
 
@@ -83,7 +80,7 @@ export default function App(params) {
         isConnected &&
         (
           <div>
-            <Header setCurrentComponent={setCurrentComponent}/>
+            <Header setCurrentComponent={setCurrentComponent} setIsConnected={setIsConnected}/>
           </div>
         )
       }

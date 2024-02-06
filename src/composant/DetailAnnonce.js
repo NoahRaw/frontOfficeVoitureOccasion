@@ -1,11 +1,25 @@
-import React, { useState, useEffect } from 'react';
+/* eslint-disable jsx-a11y/anchor-is-valid */
+/* eslint-disable jsx-a11y/img-redundant-alt */
+import React, { useState } from 'react';
 
-export default function DetailAnnonce({user}) {
+export default function DetailAnnonce({user,setOtherId,setCurrentComponent}) {
   const [estVisible, setEstVisible] = useState(false);
 
   const handleClick = () => {
     setEstVisible(!estVisible);
   };
+
+  const contacter = () => {
+    const json={
+        name : user.nomutilisateur,
+        userId : user.idutilisateur,
+        active : false,
+        isOnline :  false,
+        image : user.image,
+    };
+    setOtherId(json)
+    setCurrentComponent('chatBody')
+  }
 
   return (
     <div className="col-xl-4 col-lg-4 col-md-6">
@@ -37,7 +51,7 @@ export default function DetailAnnonce({user}) {
                 }
                 <div class="button-group-area mt-40">
                     <button onClick={handleClick} class="genric-btn success circle">Detail</button>
-                    <button class="genric-btn danger circle" style={{marginLeft : 55}}>Contacter</button>
+                    <button onClick={contacter} class="genric-btn danger circle" style={{marginLeft : 55}}>Contacter</button>
                 </div>
             </div>
 
