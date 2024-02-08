@@ -4,10 +4,17 @@ import ListeFavorisDetail from './ListeFavorisDetail';
 const ListeFavoris = () => {
     const [userData, setUserData] = useState([]);
 
+    const authToken = localStorage.getItem('authToken');
+
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await fetch(`http://localhost:52195/AnnonceFavorisView/findAnnonceFavorisByIdUser`);
+                const response = await fetch(`http://localhost:52195/AnnonceFavorisView/findAnnonceFavorisByIdUser`, {
+                    method: "GET",
+                    headers: {
+                        Authorization: `Bearer ${authToken}`,
+                    },
+                    });
 
                 if (response.ok) {
                 const data = await response.json();
