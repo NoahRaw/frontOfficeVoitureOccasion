@@ -12,9 +12,9 @@ const Recherche = () => {
   const [prixMax, setPrixMax] = useState(1000000000);
   const [nbrPorte, setNbrPorte] = useState(0);
   const [puissanceVal, setPuissanceVal] = useState('0');
-  const [date, setDate] = useState('2024-02-06');
-  const [kilometrage, setKilometrage] = useState('1000000000');
-  const [idtypedevehicule, setIdTypeDeVehicule] = useState('1');
+  const [date, setDate] = useState('2023-05-25');
+  const [kilometrage, setKilometrage] = useState('0');
+  const [idtypedevehicule, setIdTypeDeVehicule] = useState('0');
 
   const [formSubmitted, setFormSubmitted] = useState(false);
   const [userData, setUserData] = useState([]);
