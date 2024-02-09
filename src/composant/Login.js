@@ -1,7 +1,7 @@
 /* eslint-disable react/style-prop-object */
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import React, { useState } from 'react';
-import '../css/login.css';
+import '../css/Login.css';
 
 const Login = ({setIsConnected,setCurrentComponent}) => {
   const [login, setLogin] = useState('noah@gmail.com');

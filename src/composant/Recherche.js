@@ -269,7 +269,7 @@ const Recherche = () => {
                                                         <label for="cc-payment" className="control-label mb-1"><b>Modele</b></label>
                                                             <div className="col-10 col-md-15">
                                                                   <select value={idmodele} onChange={handleTextModele} name="" id="select" className="form-control">
-                                                                                      <option value={0}>
+                                                                                      <option value={0} selected>
                                                                                           choisissez votre modele
                                                                                     </option>
                                                                                       {dropdownModele.map((option) => (
