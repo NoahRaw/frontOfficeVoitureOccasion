@@ -39,7 +39,6 @@ export default function DetailAnnonce({user,setOtherId,setCurrentComponent}) {
 
       if (response.ok) {
         // Ajouté aux favoris avec succès
-        alert('Annonce ajoutée aux favoris avec succès!');
         setFavorisAdded(true);
       } else {
         // Gérer les erreurs de requête
