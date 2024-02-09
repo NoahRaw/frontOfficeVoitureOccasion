@@ -9,7 +9,7 @@ const ListeFavoris = () => {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await fetch(`http://localhost:52195/AnnonceFavorisView/findAnnonceFavorisByIdUser`, {
+                const response = await fetch(`https://voitureoccasion-production-d019.up.railway.app/AnnonceFavorisView/findAnnonceFavorisByIdUser`, {
                     method: "GET",
                     headers: {
                         Authorization: `Bearer ${authToken}`,

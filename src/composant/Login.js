@@ -16,7 +16,7 @@ const Login = ({setIsConnected,setCurrentComponent}) => {
     e.preventDefault();
     
     try {
-      const response = await fetch(`http://localhost:52195/Utilisateurs/authenticateSimpleUser?login=${login}&pwd=${pwd}`, {
+      const response = await fetch(`https://voitureoccasion-production-d019.up.railway.app/Utilisateurs/authenticateSimpleUser?login=${login}&pwd=${pwd}`, {
         method: 'POST',
       });
 

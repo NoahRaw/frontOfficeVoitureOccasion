@@ -26,7 +26,7 @@ export default function DetailAnnonce({user,setOtherId,setCurrentComponent}) {
 
   const addToFavorites = async () => {
     try {
-      const response = await fetch('http://localhost:52195/Favoris', {
+      const response = await fetch('https://voitureoccasion-production-d019.up.railway.app/Favoris', {
         method: 'POST',
         headers: {
             Authorization: `Bearer ${authToken}`,
@@ -55,7 +55,7 @@ export default function DetailAnnonce({user,setOtherId,setCurrentComponent}) {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch(`http://localhost:52195/photoVoitureUtilisateurs/getPhotoVoitureUtilisateur/${user.idvoitureutilisateur}`);
+        const response = await fetch(`https://voitureoccasion-production-d019.up.railway.app/photoVoitureUtilisateurs/getPhotoVoitureUtilisateur/${user.idvoitureutilisateur}`);
 
         if (response.ok) {
           const data = await response.json();

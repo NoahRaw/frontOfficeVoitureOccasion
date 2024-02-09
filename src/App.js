@@ -24,7 +24,7 @@ export default function App(params) {
 
       const checkToken = async () => {
         try {
-          const response = await fetch(`http://localhost:52195/Utilisateurs/isTokenValide`, {
+          const response = await fetch(`https://voitureoccasion-production-d019.up.railway.app/Utilisateurs/isTokenValide`, {
             method: 'GET',
             headers: {
               'Content-Type': 'application/json',

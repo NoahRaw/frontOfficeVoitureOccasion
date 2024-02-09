@@ -9,7 +9,7 @@ export default function ListeFavorisDetail({ idannoncefavoris,nomutilisateur,idv
     useEffect(() => {
       const fetchData = async () => {
         try {
-          const response = await fetch(`http://localhost:52195/photoVoitureUtilisateurs/getPhotoVoitureUtilisateur/${idvoitureutilisateur}`);
+          const response = await fetch(`https://voitureoccasion-production-d019.up.railway.app/photoVoitureUtilisateurs/getPhotoVoitureUtilisateur/${idvoitureutilisateur}`);
   
           if (response.ok) {
             const data = await response.json();
@@ -31,7 +31,7 @@ export default function ListeFavorisDetail({ idannoncefavoris,nomutilisateur,idv
     useEffect(() => {
         const fetchAnnonces = async () => {
         try {
-            const response = await fetch(`http://localhost:52195/AnnonceFavorisView/findAnnonceFavorisByIdUser`, {
+            const response = await fetch(`https://voitureoccasion-production-d019.up.railway.app/AnnonceFavorisView/findAnnonceFavorisByIdUser`, {
                 method: "GET",
                 headers: {
                     Authorization: `Bearer ${authToken}`,
@@ -60,7 +60,7 @@ export default function ListeFavorisDetail({ idannoncefavoris,nomutilisateur,idv
 
     const deleteFavoris = async () => {
         try {
-          const response = await fetch(`http://localhost:52195/Favoris/${idannoncefavoris}`, {
+          const response = await fetch(`https://voitureoccasion-production-d019.up.railway.app/Favoris/${idannoncefavoris}`, {
             method: 'DELETE',
           });
     

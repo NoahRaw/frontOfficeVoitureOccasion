@@ -26,7 +26,7 @@ const ChatList = ({ setOtherId }) => {
       try {
         // Remplacez 'YOUR_API_URL' par l'URL réelle de votre service web
         const response = await fetch(
-          "http://localhost:8080/api/chat/ListConversation",
+          "https://messagebackendvoitureoccasion-production-b056.up.railway.app/api/chat/ListConversation",
           {
             method: "GET",
             headers: {

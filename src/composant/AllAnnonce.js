@@ -8,7 +8,7 @@ const AllAnnonce = ({setOtherId,setCurrentComponent}) => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch(`http://localhost:52195/Voitureutilisateur_view`);
+        const response = await fetch(`https://voitureoccasion-production-d019.up.railway.app/Voitureutilisateur_view`);
 
         if (response.ok) {
           const data = await response.json();

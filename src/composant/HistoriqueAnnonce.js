@@ -9,7 +9,7 @@ const HistoriqueAnnonce = () => {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await fetch(`http://localhost:52195/Voitureutilisateur_view/getHistoriqueAnnonce`, {
+                const response = await fetch(`https://voitureoccasion-production-d019.up.railway.app/Voitureutilisateur_view/getHistoriqueAnnonce`, {
                     method: "GET",
                     headers: {
                         Authorization: `Bearer ${authToken}`,

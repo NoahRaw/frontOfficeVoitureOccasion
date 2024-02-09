@@ -11,7 +11,7 @@ const Header = ({setCurrentComponent,setIsConnected}) => {
         const authToken = localStorage.getItem('authToken');
     
         try {
-          const response = await fetch(`http://localhost:52195/Utilisateurs/deconnection`, {
+          const response = await fetch(`https://voitureoccasion-production-d019.up.railway.app/Utilisateurs/deconnection`, {
             method: 'POST',
             headers: {
               'Content-Type': 'application/json',

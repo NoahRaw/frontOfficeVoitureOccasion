@@ -13,7 +13,7 @@ const ChatContent = ({ otherId }) => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch(`http://localhost:8080/api/chat/ListMessage?otherUserId=${otherId.userId}`, {
+        const response = await fetch(`https://messagebackendvoitureoccasion-production-b056.up.railway.app/api/chat/ListMessage?otherUserId=${otherId.userId}`, {
           method: "GET",
           headers: {
             Authorization: `Bearer ${authToken}`,
@@ -62,7 +62,7 @@ const ChatContent = ({ otherId }) => {
   {
       // Appel du service web pour enregistrer le message
       try {
-        const response = await fetch(`http://localhost:8080/api/chat?userToSend=${otherId.userId}`, {
+        const response = await fetch(`https://messagebackendvoitureoccasion-production-b056.up.railway.app/api/chat?userToSend=${otherId.userId}`, {
           method: "POST",
           headers: {
             Authorization: `Bearer ${authToken}`,

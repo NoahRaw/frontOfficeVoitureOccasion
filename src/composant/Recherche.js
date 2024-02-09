@@ -26,7 +26,7 @@ const Recherche = () => {
         // Exemple de chargement des options depuis un web service
         const fetchDropdownOptions = async () => {
           try {
-            const response = await fetch('http://localhost:52195/Marque');
+            const response = await fetch('https://voitureoccasion-production-d019.up.railway.app/Marque');
             if (response.ok) {
               const options = await response.json();
               setDropdownMarque(options);
@@ -51,7 +51,7 @@ const Recherche = () => {
         useEffect(() => {
             const fetchDropdownModele = async () => {
             try {
-                const response = await fetch('http://localhost:52195/Modele');
+                const response = await fetch('https://voitureoccasion-production-d019.up.railway.app/Modele');
                 if (response.ok) {
                 const options = await response.json();
                 setDropdownModele(options);
@@ -76,7 +76,7 @@ const Recherche = () => {
         useEffect(() => {
           const fetchDropdownCarburant = async () => {
             try {
-              const response = await fetch('http://localhost:52195/Carburant');
+              const response = await fetch('https://voitureoccasion-production-d019.up.railway.app/Carburant');
               if (response.ok) {
                 const options = await response.json();
                 setDropdownCarburant(options);
@@ -101,7 +101,7 @@ const Recherche = () => {
         useEffect(() => {
             const fetchDropdownPuissance = async () => {
             try {
-                const response = await fetch('http://localhost:52195/Puissance');
+                const response = await fetch('https://voitureoccasion-production-d019.up.railway.app/Puissance');
                 if (response.ok) {
                 const options = await response.json();
                 setDropdownPuissance(options);
@@ -126,7 +126,7 @@ const Recherche = () => {
         useEffect(() => {
             const fetchDropdownBoiteDeVitesse = async () => {
             try {
-                const response = await fetch('http://localhost:52195/Boitedevitesse');
+                const response = await fetch('https://voitureoccasion-production-d019.up.railway.app/Boitedevitesse');
                 if (response.ok) {
                 const options = await response.json();
                 setDropdownBoiteDeVitesse(options);
@@ -147,7 +147,7 @@ const Recherche = () => {
         useEffect(() => {
             const fetchDropdownTypeDeVehicule = async () => {
             try {
-                const response = await fetch('http://localhost:52195/typeDeVehicules');
+                const response = await fetch('https://voitureoccasion-production-d019.up.railway.app/typeDeVehicules');
                 if (response.ok) {
                 const options = await response.json();
                 setDropdownTypeDeVehicule(options);
@@ -177,7 +177,7 @@ const Recherche = () => {
             // Vous pouvez maintenant effectuer votre appel à votre service Spring Boot ici
             try {
 
-              const response = await fetch(`http://localhost:52195/Voitureutilisateur_view/rechercheMultiple?prixmin=${prixMin}&prixmax=${prixMax}`, {                
+              const response = await fetch(`https://voitureoccasion-production-d019.up.railway.app/Voitureutilisateur_view/rechercheMultiple?prixmin=${prixMin}&prixmax=${prixMax}`, {                
                 method: 'POST',
                 headers: {
                   'Content-Type': 'application/json',
