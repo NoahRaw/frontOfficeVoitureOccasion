@@ -3,7 +3,9 @@ import React, { useState, useEffect } from 'react';
 export default function DetailHistoriqueAnnonce({ nomutilisateur,idvoitureutilisateur, dateventedebut, matricule, kilometrage, prix, nommarque, nommodele, nomcarburant, kw, cv, nomboitedevitesse, nomtypedevehicule, nbrporte, puissance, setAnnonces }) {
 
     const [voiturePhoto, setVoiturePhoto] = useState([]);
-  
+
+    const authToken = localStorage.getItem('authToken');
+
     useEffect(() => {
       const fetchData = async () => {
         try {
@@ -29,7 +31,12 @@ export default function DetailHistoriqueAnnonce({ nomutilisateur,idvoitureutilis
     useEffect(() => {
         const fetchAnnonces = async () => {
         try {
-            const response = await fetch('http://localhost:52195/Voitureutilisateur_view/getHistoriqueAnnonce');
+            const response = await fetch(`http://localhost:52195/Voitureutilisateur_view/getHistoriqueAnnonce`, {
+                method: "GET",
+                headers: {
+                    Authorization: `Bearer ${authToken}`,
+                },
+                });
             if (response.ok) {
             const data = await response.json();
             setAnnonces(data);
@@ -86,7 +93,6 @@ export default function DetailHistoriqueAnnonce({ nomutilisateur,idvoitureutilis
                     }
                     <div class="button-group-area mt-40">
                         <button onClick={handleClick} class="genric-btn success circle">Detail</button>
-                        <button class="genric-btn danger circle">Contacter</button>
                     </div>
                 </div>
 

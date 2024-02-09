@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from 'react';
 
-export default function ListeFavorisDetail({ idannoncefavoris,idutilisateur,idvoitureutilisateur, dateventedebut, matricule, kilometrage, prix, nommarque, nommodele, nomcarburant, kw, cv, nomboitedevitesse, nomtypedevehicule, nbrporte, puissance, setAnnonces }) {
+export default function ListeFavorisDetail({ idannoncefavoris,nomutilisateur,idvoitureutilisateur, dateventedebut, matricule, kilometrage, prix, nommarque, nommodele, nomcarburant, kw, cv, nomboitedevitesse, nomtypedevehicule, nbrporte, puissance, setAnnonces }) {
 
     const [voiturePhoto, setVoiturePhoto] = useState([]);
+
+    const authToken = localStorage.getItem('authToken');
   
     useEffect(() => {
       const fetchData = async () => {
@@ -29,7 +31,12 @@ export default function ListeFavorisDetail({ idannoncefavoris,idutilisateur,idvo
     useEffect(() => {
         const fetchAnnonces = async () => {
         try {
-            const response = await fetch('http://localhost:52195/AnnonceFavorisView/findAnnonceFavorisByIdUser');
+            const response = await fetch(`http://localhost:52195/AnnonceFavorisView/findAnnonceFavorisByIdUser`, {
+                method: "GET",
+                headers: {
+                    Authorization: `Bearer ${authToken}`,
+                },
+                });
             if (response.ok) {
             const data = await response.json();
             setAnnonces(data);
@@ -51,21 +58,40 @@ export default function ListeFavorisDetail({ idannoncefavoris,idutilisateur,idvo
       setEstVisible(!estVisible);
     };
 
+    const deleteFavoris = async () => {
+        try {
+          const response = await fetch(`http://localhost:52195/Favoris/${idannoncefavoris}`, {
+            method: 'DELETE',
+          });
+    
+          if (response.ok) {
+            setAnnonces(prevAnnonces => prevAnnonces.filter(annonce => annonce.idannoncefavoris !== idannoncefavoris));
+            // window.location.reload();
+            console.log("favoris supprime avec succes");
+            
+          } else {
+            console.error('Erreur lors de la demande:', response.statusText);
+            alert('une erreur s`est produite lors de suppression dans favoris');
+          }
+        } catch (error) {
+          console.error('Erreur lors de la requête HTTP:', error);
+        }
+      };
+
     return(
                     
         <div className="col-xl-4 col-lg-4 col-md-6">
             <div className="single-place mb-30">
                 <div className="place-img">
                     {voiturePhoto.map((photo) => (
-                    // <img src={`${photo.nomPhoto}`} alt="Description de l'image" ></img>
-                        <img src="https://images.bfmtv.com/UsUszd-6qH5LSvmGP4LK5ZkJgwE=/4x3:1252x705/800x0/images/-180591.jpg" alt="Description de l'image" ></img>
-
-                    ))}
+                      <img src={`${photo.nomPhoto}`} alt="Description de l'image" ></img>
+                    ))} 
                 </div>
-                <div className="place-cap" key={idannoncefavoris}>
+                <div className="place-cap">
                     <div className="place-cap-top">
+                        <span><i className="fas fa-user"></i><span>{nomutilisateur}</span> </span>
                         <h3><a href="#">{nomtypedevehicule} {nommodele}</a></h3>
-                        <p className="dolor">{prix} <span>/ {kilometrage}</span></p>
+                        <p className="dolor">{prix} Ar<span>/ {kilometrage} km</span></p>
                     </div>
                     <div className="place-cap-bottom">
                         <ul>
@@ -76,7 +102,7 @@ export default function ListeFavorisDetail({ idannoncefavoris,idutilisateur,idvo
                     {estVisible && 
                         <div className="place-cap-top">
                             <p className="dolor">Carburant : <span> {nomcarburant}</span></p>
-                            <p className="dolor">Puissance en chevaux : <span> {kw} / {cv}</span></p>
+                            <p className="dolor">Puissance en chevaux : <span> {kw} kw / {cv} cv</span></p>
                             <p className="dolor">Puissance : <span> {puissance}</span></p>
                             <p className="dolor">Marque : <span> {nommarque}</span></p>
                             <p className="dolor">Type de boite de vitesse : <span> {nomboitedevitesse}</span></p>
@@ -85,6 +111,7 @@ export default function ListeFavorisDetail({ idannoncefavoris,idutilisateur,idvo
                     }
                     <div class="button-group-area mt-40">
                         <button onClick={handleClick} class="genric-btn success circle">Detail</button>
+                        <button onClick={deleteFavoris} class="genric-btn danger circle" style={{marginLeft : 55}}>Supprimer du favoris</button>
                     </div>
                 </div>
 

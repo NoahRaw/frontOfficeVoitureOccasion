@@ -47,6 +47,8 @@ const ListeFavoris = () => {
                     {userData.map((user) => (
                         <ListeFavorisDetail
                         key={user.idannoncefavoris}
+                        idannoncefavoris = {user.idannoncefavoris}
+                        nomutilisateur={user.nomutilisateur}
                         idutilisateur = {user.idutilisateur}
                         idvoitureutilisateur={user.idvoitureutilisateur}
                         dateventedebut={user.dateventedebut}
