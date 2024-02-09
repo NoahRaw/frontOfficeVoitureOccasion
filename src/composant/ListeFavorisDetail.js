@@ -113,7 +113,7 @@ export default function ListeFavorisDetail({ idannoncefavoris,nomutilisateur,idv
                     }
                     <div class="button-group-area mt-40">
                         <button onClick={handleClick} class="genric-btn success circle">Detail</button>
-                        <button onClick={deleteFavoris} class="genric-btn danger circle" style={{marginLeft : 55}}>Supprimer du favoris</button>
+                        <button onClick={deleteFavoris} class="genric-btn danger circle" style={{marginLeft : 55}}>Supprimer</button>
                     </div>
                 </div>
 
