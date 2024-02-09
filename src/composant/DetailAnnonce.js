@@ -1,6 +1,6 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 /* eslint-disable jsx-a11y/img-redundant-alt */
-import React, { useState } from 'react';
+import React, { useState,useEffect } from 'react';
 import { FaHeart } from 'react-icons/fa';
 
 export default function DetailAnnonce({user,setOtherId,setCurrentComponent}) {
@@ -51,11 +51,37 @@ export default function DetailAnnonce({user,setOtherId,setCurrentComponent}) {
     }
   };
 
+  const [voiturePhoto, setVoiturePhoto] = useState([]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await fetch(`http://localhost:52195/photoVoitureUtilisateurs/getPhotoVoitureUtilisateur/${user.idvoitureutilisateur}`);
+
+        if (response.ok) {
+          const data = await response.json();
+          console.log(data);
+
+          setVoiturePhoto(data); // Mettez à jour l'état avec les données récupérées
+        } else {
+          console.error('Erreur lors de la requête HTTP:', response.statusText);
+        }
+      } catch (error) {
+        console.error('Erreur lors de la requête HTTP:', error);
+      }
+    };
+
+    fetchData();
+  }, [user.idvoitureutilisateur]);
+
+
   return (
     <div className="col-xl-4 col-lg-4 col-md-6">
         <div className="single-place mb-30">
             <div className="place-img">
-                    <img src="https://images.bfmtv.com/UsUszd-6qH5LSvmGP4LK5ZkJgwE=/4x3:1252x705/800x0/images/-180591.jpg" alt="Description de l'image" ></img>
+            {voiturePhoto.map((photo) => (
+                    <img src={`${photo.nomPhoto}`}  alt="Description de l'image" ></img>
+            ))}
             </div>
             <div className="place-cap">
                 <div className="place-cap-top">
