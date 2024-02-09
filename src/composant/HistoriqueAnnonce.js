@@ -28,7 +28,7 @@ const HistoriqueAnnonce = () => {
         };
 
         fetchData();
-    }, []);
+    }, [authToken]);
 
 
   return (

@@ -32,7 +32,7 @@ const ChatContent = ({ otherId }) => {
     };
 
     fetchData();
-  }, [otherId]);
+  }, [authToken, otherId]);
 
   const scrollToBottom = () => {
     messagesEndRef.current.scrollIntoView({ behavior: "smooth" });

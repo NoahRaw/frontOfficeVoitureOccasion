@@ -28,7 +28,7 @@ const ListeFavoris = () => {
         };
 
         fetchData();
-    }, []);
+    }, [authToken]);
 
 
   return (

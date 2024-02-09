@@ -1,3 +1,5 @@
+/* eslint-disable jsx-a11y/anchor-is-valid */
+/* eslint-disable jsx-a11y/img-redundant-alt */
 import React, { useState, useEffect } from 'react';
 
 export default function ListeFavorisDetail({ idannoncefavoris,nomutilisateur,idvoitureutilisateur, dateventedebut, matricule, kilometrage, prix, nommarque, nommodele, nomcarburant, kw, cv, nomboitedevitesse, nomtypedevehicule, nbrporte, puissance, setAnnonces }) {
@@ -49,7 +51,7 @@ export default function ListeFavorisDetail({ idannoncefavoris,nomutilisateur,idv
         };
 
         fetchAnnonces();
-    }, []);
+    }, [authToken, setAnnonces]);
   
   
     const [estVisible, setEstVisible] = useState(false);
