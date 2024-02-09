@@ -1,13 +1,16 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 // RightPanel.js
-import React from 'react';
+import React, { useState} from 'react';
 
 const Header = ({setCurrentComponent,setIsConnected}) => {
+    const [loading, setLoading] = useState(false);
+
     const handleClick = async (componentKey) => {
         setCurrentComponent(componentKey);
     }
 
     const deconnection = async (componentKey) => {
+        setLoading(true)
         const authToken = localStorage.getItem('authToken');
     
         try {
@@ -77,7 +80,15 @@ const Header = ({setCurrentComponent,setIsConnected}) => {
                                             <li><a href="#" onClick={() => handleClick('allAnnonce')}>Liste annonce</a></li>
                                             <li><a href="#" onClick={() => handleClick('ListeFavoris')}>Liste annonce favoris</a></li>
                                             <li><a href="#" onClick={() => handleClick('recherche')}>Recherche avancé</a></li>
-                                            <li><a href="#" onClick={() => deconnection('login')}>Deconnexion</a></li>
+                                            {loading===false &&
+                                                <li><a href="#" onClick={() => deconnection('login')}>Deconnexion</a></li>
+                                            }
+                                            {loading === true && (<li>
+                                            <div style={{ display: "flex", justifyContent: "center", alignItems: "center"}}>
+                                                <img src="Loading_2.gif" alt="Loading..." />
+                                            </div></li>
+                                            )}
+
                                         </ul>
                                     </nav>
                                 </div>

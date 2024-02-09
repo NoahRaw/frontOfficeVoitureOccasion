@@ -7,6 +7,11 @@ const AllAnnonce = ({setOtherId,setCurrentComponent}) => {
   const [userData, setUserData] = useState([]);
   const [loading, setLoading] = useState(true);
 
+  const voir = () => 
+  {
+	setCurrentComponent('login')
+  }
+
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -39,6 +44,11 @@ const AllAnnonce = ({setOtherId,setCurrentComponent}) => {
                         <div className="section-tittle text-center">
                             <span>ANNONCE</span>
                             <h2>Listes des annonces</h2>
+                            <div class="container-login100-form-btn" style={{ display: "flex", justifyContent: "center", alignItems: "center",marginBottom : "100px"}}>
+                              <button class="login100-form-btn" onClick={voir} style={{"background": "black"}}>
+                                Se connecter
+                              </button>
+                            </div>
                         </div>
                     </div>
                 </div>

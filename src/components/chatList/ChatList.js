@@ -6,6 +6,7 @@ const ChatList = ({ setOtherId }) => {
   const [allChats, setAllChats] = useState([]);
   const [allChatsOriginal, setAllChatsOriginal] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
+  const [loading, setLoading] = useState(true);
 
   const handleSearch = () => {
     const filteredChats = searchInJsonData(searchTerm);
@@ -46,6 +47,10 @@ const ChatList = ({ setOtherId }) => {
       } catch (error) {
         console.error("Erreur lors de la requête HTTP:", error);
       }
+      finally
+      {
+        setLoading(false);
+      }
     };
 
     // Appel de la fonction fetchData
@@ -74,6 +79,11 @@ const ChatList = ({ setOtherId }) => {
           </button>
         </div>
       </div>
+      {loading === true && (
+                  <div style={{ display: "flex", justifyContent: "center", alignItems: "center"}}>
+                    <img src="Loading_2.gif" alt="Loading..." />
+                  </div>
+                )}
       <div className="chatlist__items">
         {allChats.map((item, index) => {
           return (

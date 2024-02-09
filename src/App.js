@@ -5,6 +5,7 @@ import Footer from './composant/template/Footer.js';
 import ChatBody from "./components/chatBody/ChatBody";
 import recherche from "./composant/Recherche";
 import AllAnnonce from "./composant/AllAnnonce";
+import AllAnnonceRetour from "./composant/AllAnnonceRetour";
 import HistoriqueAnnonce from "./composant/HistoriqueAnnonce";
 import ListeFavoris from "./composant/ListeFavoris";
 import Login from "./composant/Login";
@@ -65,6 +66,8 @@ export default function App(params) {
           return <ComponentToRender/>;
         case 'allAnnonce':
           return <AllAnnonce setOtherId={setOtherId} setCurrentComponent={setCurrentComponent}/>;
+        case 'AllAnnonceRetour':
+            return <AllAnnonceRetour setOtherId={setOtherId} setCurrentComponent={setCurrentComponent}/>;
         case 'historiqueAnnonce':
             return <HistoriqueAnnonce />;
         case 'ListeFavoris':

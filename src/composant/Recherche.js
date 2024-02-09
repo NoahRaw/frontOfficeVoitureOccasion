@@ -21,6 +21,7 @@ const Recherche = () => {
 
 
   const [dropdownMarque, setDropdownMarque] = useState([]);
+  const [loading, setLoading] = useState(false);
 
     useEffect(() => {
         // Exemple de chargement des options depuis un web service
@@ -173,6 +174,7 @@ const Recherche = () => {
 
           const handleSubmit = async (event) => {
             event.preventDefault();
+            setLoading(true);
 
             // Vous pouvez maintenant effectuer votre appel à votre service Spring Boot ici
             try {
@@ -207,6 +209,10 @@ const Recherche = () => {
               }
             } catch (error) {
               console.error('Erreur lors de la soumission des données:', error);
+            }
+            finally
+            {
+              setLoading(false);
             }
           };
         
@@ -396,13 +402,17 @@ const Recherche = () => {
                                                         </button>
                                                         </div>
                                                     </form>
+                                                    {loading===true && (
+                  <div style={{ display: "flex", justifyContent: "center", alignItems: "center"}}>
+                    <img src="Loading_2.gif" alt="Loading..." />
+                  </div>
+                )}
                                           </div>
                                       </div>
                                 </div>
                           </div>
                   </div>
           </div>
-          
            {/* Affichez le composant tableau si le formulaire a été soumis */}
            {formSubmitted && userData && <ConstructAnnonce liste={userData}  />}
         </div>

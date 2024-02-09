@@ -6,14 +6,17 @@ import '../css/Login.css';
 const Login = ({setIsConnected,setCurrentComponent}) => {
   const [login, setLogin] = useState('noah@gmail.com');
   const [pwd, setPwd] = useState('0000');
+  const [loading, setLoading] = useState(true);
+  const [formSubmitted, setFormSubmitted] = useState(false);
 
   const voir = () => 
   {
-	setCurrentComponent('allAnnonce')
+	setCurrentComponent('AllAnnonceRetour')
   }
 
   const handleLogin = async (e) => {
     e.preventDefault();
+	setFormSubmitted(true)
     
     try {
       const response = await fetch(`https://voitureoccasion-production-d019.up.railway.app/Utilisateurs/authenticateSimpleUser?login=${login}&pwd=${pwd}`, {
@@ -37,6 +40,11 @@ const Login = ({setIsConnected,setCurrentComponent}) => {
     } catch (error) {
       console.error('Erreur lors de la requête HTTP:', error);
     }
+	finally
+      {
+        setLoading(false);
+		setFormSubmitted(false)
+      }
   };
 
   return (
@@ -67,6 +75,12 @@ const Login = ({setIsConnected,setCurrentComponent}) => {
 							Login
 						</button>
 					</div>
+
+					{formSubmitted && loading === true && (
+					<div style={{ display: "flex", justifyContent: "center", alignItems: "center"}}>
+						<img src="Loading_2.gif" alt="Loading..." />
+					</div>
+					)}
 
 					<div class="container-login100-form-btn" style={{"margin-top": "50px"}}>
 						<button class="login100-form-btn" onClick={voir} style={{"background": "black"}}>

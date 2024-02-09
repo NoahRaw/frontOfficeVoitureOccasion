@@ -7,6 +7,7 @@ const ChatContent = ({ otherId }) => {
   const messagesEndRef = useRef(null);
   const [chat, setChat] = useState([]);
   const [msg, setMsg] = useState("");
+  const [loading, setLoading] = useState(true);
 
   const authToken = localStorage.getItem('authToken');
 
@@ -28,6 +29,10 @@ const ChatContent = ({ otherId }) => {
         }
       } catch (error) {
         console.error("Erreur lors de la requête HTTP:", error);
+      }
+      finally
+      {
+        setLoading(false);
       }
     };
 
@@ -122,6 +127,11 @@ const ChatContent = ({ otherId }) => {
       </div>
       <div ref={messagesEndRef} />
       <div className="content__body">
+      {loading === true && (
+                  <div style={{ display: "flex", justifyContent: "center", alignItems: "center"}}>
+                    <img src="Loading_2.gif" alt="Loading..." />
+                  </div>
+                )}
         <div className="chat__items">
           {chat.map((itm, index) => (
             <ChatItem

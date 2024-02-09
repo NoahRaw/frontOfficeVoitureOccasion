@@ -3,6 +3,7 @@ import DetailHistoriqueAnnonce from './DetailHistoriqueAnnonce';
 
 const HistoriqueAnnonce = () => {
     const [userData, setUserData] = useState([]);
+    const [loading, setLoading] = useState(true);
 
     const authToken = localStorage.getItem('authToken');
 
@@ -25,6 +26,10 @@ const HistoriqueAnnonce = () => {
             } catch (error) {
                 console.error('Erreur lors de la requête HTTP:', error);
             }
+            finally
+            {
+                setLoading(false)
+            }
         };
 
         fetchData();
@@ -43,6 +48,11 @@ const HistoriqueAnnonce = () => {
                         </div>
                     </div>
                 </div>
+                {loading === true && (
+                  <div style={{ display: "flex", justifyContent: "center", alignItems: "center"}}>
+                    <img src="Loading_2.gif" alt="Loading..." />
+                  </div>
+                )}
                 <div className="row">
                     {userData.map((user) => (
                         <DetailHistoriqueAnnonce
